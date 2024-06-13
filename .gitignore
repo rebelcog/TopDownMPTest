@@ -1,2 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
+github-rebelcog-keys
+github-rebelcog-keys.pub
