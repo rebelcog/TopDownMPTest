@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctapumxhcdjmb"]
+
+[ext_resource type="Script" path="res://Multiplayer/multiplayer.gd" id="1_7tu2q"]
+[ext_resource type="PackedScene" uid="uid://dngkvx4v1mp16" path="res://Levels/level.tscn" id="2_22sob"]
+[ext_resource type="PackedScene" uid="uid://m28c6by4fp62" path="res://player/player.tscn" id="3_bl3vx"]
+
+[node name="Multiplayer" type="Node2D"]
+script = ExtResource("1_7tu2q")
+
+[node name="UI" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Net" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Options" type="HBoxContainer" parent="UI/Net"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Net/Options"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="UI/Net/Options"]
+layout_mode = 2
+text = "Host"
+
+[node name="Connect" type="Button" parent="UI/Net/Options"]
+layout_mode = 2
+text = "Connect"
+
+[node name="Remote" type="LineEdit" parent="UI/Net/Options"]
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="Level" parent="." instance=ExtResource("2_22sob")]
+
+[node name="Player" parent="Level" instance=ExtResource("3_bl3vx")]
+
+[connection signal="pressed" from="UI/Net/Options/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="UI/Net/Options/Connect" to="." method="_on_connect_pressed"]
