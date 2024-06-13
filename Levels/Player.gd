@@ -4,6 +4,8 @@ class_name Player
 @onready var body: MeshInstance3D = $Body
 @onready var aimer: Node3D = $aimer
 @onready var camera_3d: Camera3D = $Camera3D
+@onready var marker = $marker
+
 
 @export var camera_position: Vector3 = Vector3(0, 20, 5)
 @export var camera_offset: int = 0
@@ -54,6 +56,6 @@ func _physics_process(delta: float) -> void:
 		var look_at_me = Vector3(pos.x, position.y, pos.z)
 		aimer.look_at(look_at_me, Vector3.UP)
 		if Input.is_action_pressed("aim"):
-			look_at(look_at_me, Vector3.UP)
-		camera_3d.position.x = (lerp(global_position.x, pos.x, .2))
-		camera_3d.position.z = (lerp(global_position.z, pos.z, .3)) + camera_offset
+			body.look_at(Vector3(look_at_me.x, look_at_me.y + 1, look_at_me.z), Vector3.UP)
+		#camera_3d.position.x = (lerp(global_position.x, pos.x, .2))
+		#camera_3d.position.z = (lerp(global_position.z, pos.z, .3)) + camera_offset
